@@ -4,15 +4,17 @@ const cors = require("cors");
 const app = express();
 const PORT = 3000;
 
-app.use(cors()); 
-app.use(express.json()); 
+app.use(cors()); // Allows frontend to communicate with backend
+app.use(express.json()); // Parses JSON request body
 
-let tasks = []; 
+let tasks = []; // In-memory task list
 
+// Get all tasks
 app.get("/tasks", (req, res) => {
     res.json(tasks);
 });
 
+// Add a new task
 app.post("/tasks", (req, res) => {
     const task = req.body.task;
     if (task) {
@@ -23,6 +25,7 @@ app.post("/tasks", (req, res) => {
     }
 });
 
+// Delete a task
 app.delete("/tasks/:index", (req, res) => {
     const index = req.params.index;
     if (index >= 0 && index < tasks.length) {

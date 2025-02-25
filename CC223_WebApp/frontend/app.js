@@ -8,7 +8,7 @@ async function fetchTasks() {
 
 function displayTasks(tasks) {
     const taskList = document.getElementById("taskList");
-    taskList.innerHTML = "";
+    taskList.innerHTML = ""; // Clear existing tasks
 
     tasks.forEach((task, index) => {
         const li = document.createElement("li");
@@ -41,12 +41,13 @@ async function addTask() {
     });
 
     taskInput.value = "";
-    fetchTasks();
+    fetchTasks(); // Refresh the list
 }
 
 async function deleteTask(index) {
     await fetch(`${API_URL}/${index}`, { method: "DELETE" });
-    fetchTasks();
+    fetchTasks(); // Refresh the list
 }
 
+// Fetch tasks when the page loads
 fetchTasks();
